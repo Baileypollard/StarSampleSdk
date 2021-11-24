@@ -1,0 +1,7 @@
+language = Objective-C
+package = StarIO_Extension
+compilerOpts = -Ilibs/stario_ext/ -Ilibs/stario_ext/Internal -Ilibs/stario/ -DNS_FORMAT_ARGUMENT(A)= -D_Nullable_result=_Nullable
+headers = ISCBBuilder.h ISCPConnectParser.h ISCPParser.h ISDCBBuilder.h ISMCBBuilder.h SMBluetoothManagerFactory.h SMSoundSetting.h StarIoExt.h StarIoExtManager.h StarIoExtManager+Asynchronous.h StarIoExtManager+Unavailable.h StarIoExtManagerBaseDelegate.h StarIoExtManagerDelegate.h StarIoExtResultCode.h
+linkerOpts = -framework CoreBluetooth -framework ExternalAccessory -framework CoreImage -framework UIKit -ObjC
+libraryPaths = libs/bin
+staticLibraries = stario_ext.a
