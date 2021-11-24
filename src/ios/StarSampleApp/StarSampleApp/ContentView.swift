@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
-
+import StarSdk
 
 struct ContentView: View {
+	
+	init() {
+		StarSdk().discoverBtPrinters()
+	}
+	
     var body: some View {
         Text("Hello, world!")
             .padding()

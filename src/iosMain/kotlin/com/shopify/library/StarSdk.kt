@@ -1,6 +1,12 @@
 package com.shopify.library
 
 import StarIO.SMPort
-class StarSdk {
+import platform.Foundation.NSLog
 
+class StarSdk {
+    fun discoverBtPrinters() {
+        SMPort.searchPrinter("BT:").also {
+            NSLog("Found ${it?.size} printers")
+        }
+    }
 }

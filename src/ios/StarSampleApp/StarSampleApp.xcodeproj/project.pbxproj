@@ -182,7 +182,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/../../..\"\n./gradlew linkDebugFrameworkIosFat\n";
+			shellScript = "cd \"$SRCROOT/../../..\"\n./gradlew linkDebugFrameworkIos\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

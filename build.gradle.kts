@@ -16,7 +16,7 @@ repositories {
 kotlin {
     android()
 
-    ios {
+    iosArm64("ios") {
         compilations.getByName("main").cinterops.create("StarIO")
         compilations.getByName("main").cinterops.create("StarIO_Extension")
 
