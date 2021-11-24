@@ -13,7 +13,6 @@
 	<key>UISupportedExternalAccessoryProtocols</key>
 	<array>
 		<string>jp.star-m.starpro</string>
-		<string>TEST</string>
 	</array>
 </dict>
 </plist>
