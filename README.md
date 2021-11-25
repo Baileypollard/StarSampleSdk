@@ -8,3 +8,5 @@
 results in the EXC_BAD_ACCESS crashes that we have been seeing in production
 
 3. Star Bluetooth printer with an active StarIoExtManager connection won't reconnect after calling disconnect()/connect()
+
+4. Star mPOP printer has no macAddress in PortInfo
