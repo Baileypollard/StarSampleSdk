@@ -105,8 +105,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B558C5B6274E995900BF1528 /* Build configuration list for PBXNativeTarget "StarSampleApp" */;
 			buildPhases = (
-				B558C5A4274E995800BF1528 /* Sources */,
 				B558C5B9274E9C0D00BF1528 /* Link StarSDK */,
+				B558C5A4274E995800BF1528 /* Sources */,
 				B558C5A5274E995800BF1528 /* Frameworks */,
 				B558C5A6274E995800BF1528 /* Resources */,
 				B55C7D73274ED0A100BDC634 /* Embed Frameworks */,
