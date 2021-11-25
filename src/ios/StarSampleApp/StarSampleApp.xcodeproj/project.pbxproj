@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B558C5AE274E995800BF1528 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B558C5AD274E995800BF1528 /* ContentView.swift */; };
+		B558C5AE274E995800BF1528 /* PrinterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B558C5AD274E995800BF1528 /* PrinterListView.swift */; };
 		B558C5B0274E995900BF1528 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B558C5AF274E995900BF1528 /* Assets.xcassets */; };
 		B558C5B3274E995900BF1528 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B558C5B2274E995900BF1528 /* Preview Assets.xcassets */; };
 		B55C7D71274ED0A100BDC634 /* StarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B558C5BF274E9FFB00BF1528 /* StarSdk.framework */; platformFilter = ios; };
 		B55C7D72274ED0A100BDC634 /* StarSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B558C5BF274E9FFB00BF1528 /* StarSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B5C7E446274EC25800AB9A2D /* StarSampleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7E445274EC25800AB9A2D /* StarSampleAppApp.swift */; };
+		B55C7D75274FD8AF00BDC634 /* PrinterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55C7D74274FD8AF00BDC634 /* PrinterListViewModel.swift */; };
+		B5C7E446274EC25800AB9A2D /* StarSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7E445274EC25800AB9A2D /* StarSampleApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,12 +32,13 @@
 
 /* Begin PBXFileReference section */
 		B558C5A8274E995800BF1528 /* StarSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B558C5AD274E995800BF1528 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B558C5AD274E995800BF1528 /* PrinterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterListView.swift; sourceTree = "<group>"; };
 		B558C5AF274E995900BF1528 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B558C5B2274E995900BF1528 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B558C5BB274E9DE500BF1528 /* StarSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StarSdk.framework; path = ../StarSdk/build/bin/ios/debugFramework/StarSdk.framework; sourceTree = "<group>"; };
 		B558C5BF274E9FFB00BF1528 /* StarSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StarSdk.framework; path = ../../../build/bin/ios/debugFramework/StarSdk.framework; sourceTree = "<group>"; };
-		B5C7E445274EC25800AB9A2D /* StarSampleAppApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarSampleAppApp.swift; path = ../../../../../../.Trash/StarSampleAppApp.swift; sourceTree = "<group>"; };
+		B55C7D74274FD8AF00BDC634 /* PrinterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterListViewModel.swift; sourceTree = "<group>"; };
+		B5C7E445274EC25800AB9A2D /* StarSampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarSampleApp.swift; path = ../../../../../../.Trash/StarSampleApp.swift; sourceTree = "<group>"; };
 		B5C7E447274EC46600AB9A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,10 +76,11 @@
 			isa = PBXGroup;
 			children = (
 				B5C7E447274EC46600AB9A2D /* Info.plist */,
-				B5C7E445274EC25800AB9A2D /* StarSampleAppApp.swift */,
-				B558C5AD274E995800BF1528 /* ContentView.swift */,
+				B5C7E445274EC25800AB9A2D /* StarSampleApp.swift */,
+				B558C5AD274E995800BF1528 /* PrinterListView.swift */,
 				B558C5AF274E995900BF1528 /* Assets.xcassets */,
 				B558C5B1274E995900BF1528 /* Preview Content */,
+				B55C7D74274FD8AF00BDC634 /* PrinterListViewModel.swift */,
 			);
 			path = StarSampleApp;
 			sourceTree = "<group>";
@@ -182,7 +185,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/../../..\"\n./gradlew linkDebugFrameworkIos\n";
+			shellScript = "cd \"$SRCROOT/../../..\"\n./gradlew linkDebugFrameworkIos -Pkotlin.device=\"$KOTLIN_DEVICE\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -191,8 +194,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5C7E446274EC25800AB9A2D /* StarSampleAppApp.swift in Sources */,
-				B558C5AE274E995800BF1528 /* ContentView.swift in Sources */,
+				B5C7E446274EC25800AB9A2D /* StarSampleApp.swift in Sources */,
+				B55C7D75274FD8AF00BDC634 /* PrinterListViewModel.swift in Sources */,
+				B558C5AE274E995800BF1528 /* PrinterListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +349,9 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_WKWatchOnly = NO;
+				KOTLIN_DEVICE = "";
+				"KOTLIN_DEVICE[sdk=iphoneos*]" = ios;
+				"KOTLIN_DEVICE[sdk=iphonesimulator*]" = iosSim;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -378,6 +385,9 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_WKWatchOnly = NO;
+				KOTLIN_DEVICE = "";
+				"KOTLIN_DEVICE[sdk=iphoneos*]" = ios;
+				"KOTLIN_DEVICE[sdk=iphonesimulator*]" = iosSim;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
