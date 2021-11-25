@@ -15,21 +15,24 @@ repositories {
 
 kotlin {
     android()
+    val isSim = findProperty("kotlin.device") == "iosSim"
+    val iosTarget = if (isSim) iosX64("ios") else iosArm64("ios")
 
-    iosArm64("ios") {
-        compilations.getByName("main").cinterops.create("StarIO")
-        compilations.getByName("main").cinterops.create("StarIO_Extension")
+    iosTarget.compilations.getByName("main").cinterops.create("StarIO")
+    iosTarget.compilations.getByName("main").cinterops.create("StarIO_Extension")
 
-        binaries {
-            framework {
-                baseName = "StarSdk"
-            }
+    iosTarget.binaries {
+        framework {
+            baseName = "StarSdk"
         }
     }
 
-
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt")
+            }
+        }
         val androidMain by getting {
             dependencies {
                 implementation("com.google.android.material:material:1.2.1")
