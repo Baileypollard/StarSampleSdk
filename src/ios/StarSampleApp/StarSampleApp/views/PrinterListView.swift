@@ -26,10 +26,13 @@ struct PrinterListView: View {
                 }.padding()
                 if let list = viewModel.printerList {
                     List(list, id: \.macAddress) { portInfo in
-                        VStack(alignment: .leading) {
-                            Text(portInfo.modelName)
-                            Text(portInfo.macAddress)
-                            Text(portInfo.portName)
+                        NavigationLink(destination:
+                                        PrinterDetails(viewModel: PrinterDetailsViewModel(starManager: IosStarManager.companion.create()), portInfo: portInfo)) {
+                            VStack(alignment: .leading) {
+                                Text(portInfo.modelName)
+                                Text(portInfo.macAddress)
+                                Text(portInfo.portName)
+                            }
                         }
                     }
                     .navigationTitle("Printers")

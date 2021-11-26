@@ -5,7 +5,10 @@ import com.shopify.library.internal.star.StarManager
 class IosStarManager {
     companion object Factory {
         fun create(): StarManager {
-            return StarManager(starSdk = IosStarSdk())
+            return StarManager(
+                starIoExtManagerWrapper = IosStarIoExtManagerWrapper(),
+                starSdk = IosStarSdk()
+            )
         }
     }
 }

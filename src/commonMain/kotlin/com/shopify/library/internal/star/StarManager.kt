@@ -8,11 +8,14 @@ import kotlinx.coroutines.launch
 
 class StarManager(
     private val starSdk: StarSdk,
-    private val backgroundScope: CoroutineScope = CoroutineScope(Dispatchers.Default)
+    private val starIoExtManagerWrapper: StarIoExtManagerWrapper,
+    private val backgroundScope: CoroutineScope = CoroutineScope(Dispatchers.Default),
 ) {
 
     private val _printers = MutableSharedFlow<List<PortInfo>>()
     val printer = _printers.asSharedFlow()
+
+    val printerStatus = starIoExtManagerWrapper.printerStatus
 
     fun discoverBluetoothPrinters() {
         backgroundScope.launch {
@@ -28,5 +31,13 @@ class StarManager(
                 _printers.emit(it)
             }
         }
+    }
+
+    fun connect(portName: String) {
+        starIoExtManagerWrapper.connect(portName = portName)
+    }
+
+    fun disconnect() {
+        starIoExtManagerWrapper.disconnect()
     }
 }
