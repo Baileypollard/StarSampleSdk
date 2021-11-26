@@ -13,6 +13,8 @@ struct PrinterListView: View {
     @ObservedObject
     var viewModel: PrinterListViewModel
     
+    var starManager: StarManager
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -26,10 +28,13 @@ struct PrinterListView: View {
                 }.padding()
                 if let list = viewModel.printerList {
                     List(list, id: \.macAddress) { portInfo in
-                        VStack(alignment: .leading) {
-                            Text(portInfo.modelName)
-                            Text(portInfo.macAddress)
-                            Text(portInfo.portName)
+                        NavigationLink(destination:
+                                        PrinterDetails(viewModel: PrinterDetailsViewModel(starManager: starManager), portInfo: portInfo)) {
+                            VStack(alignment: .leading) {
+                                Text(portInfo.modelName)
+                                Text(portInfo.macAddress)
+                                Text(portInfo.portName)
+                            }
                         }
                     }
                     .navigationTitle("Printers")
@@ -41,6 +46,7 @@ struct PrinterListView: View {
 
 struct PrinterListView_Previews: PreviewProvider {
     static var previews: some View {
-        PrinterListView(viewModel: PrinterListViewModel(starManager: IosStarManager.companion.create()))
+        let starManager = IosStarManager.companion.create()
+        PrinterListView(viewModel: PrinterListViewModel(starManager: starManager), starManager: starManager)
     }
 }

@@ -31,6 +31,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt")
+                implementation ("co.touchlab:stately-iso-collections:1.1.4-a1")
             }
         }
         val androidMain by getting {
