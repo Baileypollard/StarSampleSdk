@@ -42,6 +42,7 @@ struct PrinterDetails: View {
         }
         ).onDisappear(perform: {
             viewModel.disconnect()
+            viewModel.printerStatus = "Uninitialized"
         })
     }
 }

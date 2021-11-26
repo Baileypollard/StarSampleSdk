@@ -9,7 +9,6 @@ import kotlinx.atomicfu.atomic
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import platform.Foundation.NSError
-import platform.Foundation.NSLog
 import platform.darwin.NSObject
 import kotlin.native.concurrent.freeze
 
