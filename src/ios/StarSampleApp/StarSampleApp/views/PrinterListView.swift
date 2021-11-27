@@ -28,8 +28,7 @@ struct PrinterListView: View {
                 }.padding()
                 if let list = viewModel.printerList {
                     List(list, id: \.macAddress) { portInfo in
-                        NavigationLink(destination:
-                                        PrinterDetails(viewModel: PrinterDetailsViewModel(starManager: starManager), portInfo: portInfo)) {
+                        NavigationLink(destination: PrinterDetailsView(viewModel: PrinterDetailsViewModel(starManager: starManager), portInfo: portInfo)) {
                             VStack(alignment: .leading) {
                                 Text(portInfo.modelName)
                                 Text(portInfo.macAddress)

@@ -15,6 +15,9 @@ class StarManager(
     private val _printers = MutableSharedFlow<List<PortInfo>>()
     val printer = _printers.asSharedFlow()
 
+    private val _printResult = MutableSharedFlow<Boolean>()
+    val printResult = _printResult.asSharedFlow()
+
     val printerStatus = starIoExtManagerWrapper.printerStatus
 
     fun discoverBluetoothPrinters() {
@@ -39,5 +42,13 @@ class StarManager(
 
     fun disconnect() {
         starIoExtManagerWrapper.disconnect()
+    }
+
+    fun print(releasePort: Boolean) {
+        backgroundScope.launch {
+            starIoExtManagerWrapper.print(releasePort = releasePort).also {
+                _printResult.emit(it)
+            }
+        }
     }
 }
