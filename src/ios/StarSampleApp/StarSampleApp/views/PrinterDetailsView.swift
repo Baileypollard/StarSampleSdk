@@ -8,8 +8,9 @@
 import Foundation
 import SwiftUI
 import StarSdk
+import UIKit
 
-struct PrinterDetails: View {
+struct PrinterDetailsView: View {
     
     @ObservedObject
     var viewModel: PrinterDetailsViewModel
@@ -26,10 +27,15 @@ struct PrinterDetails: View {
                 if let status = viewModel.printerStatus {
                     Text(status)
                 }
-            
-                Button("Print", action: {
+                HStack(spacing: 20.0) {
+                    Button("Print and release port", action: {
+                        viewModel.print(releasePort: true)
+                    }).disabled(viewModel.isPrinting)
                     
-                })
+                    Button("Print do not release port", action: {
+                        viewModel.print(releasePort: false)
+                    }).disabled(viewModel.isPrinting)
+                }
             }.padding()
         }.frame(
             minWidth: 0,
@@ -50,7 +56,7 @@ struct PrinterDetails: View {
 
 struct PrinterDetails_Previews: PreviewProvider {
     static var previews: some View {
-        PrinterDetails(viewModel: PrinterDetailsViewModel(starManager: IosStarManager.companion.create()), portInfo: TestPortInfo())
+        PrinterDetailsView(viewModel: PrinterDetailsViewModel(starManager: IosStarManager.companion.create()), portInfo: TestPortInfo())
     }
 }
 

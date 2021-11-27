@@ -1,6 +1,6 @@
-package com.shopify.library
+package com.shopify.library.internal.star
 
-import com.shopify.library.internal.star.StarIoExtManagerWrapper
+import StarIO.SMPort
 import StarIO_Extension.StarIoExtManager
 import StarIO_Extension.StarIoExtManagerDelegateProtocol
 import StarIO_Extension.StarIoExtManagerTypeStandard
@@ -12,7 +12,7 @@ import platform.Foundation.NSError
 import platform.darwin.NSObject
 import kotlin.native.concurrent.freeze
 
-class IosStarIoExtManagerWrapper : StarIoExtManagerWrapper {
+class IosStarIoExtManagerWrapper(private val starSdk: StarSdk) : StarIoExtManagerWrapper {
     private var starIoExtManager = atomic<StarIoExtManager?>(null)
 
     private val _printerStatus = MutableStateFlow("Uninitialized")
@@ -53,5 +53,14 @@ class IosStarIoExtManagerWrapper : StarIoExtManagerWrapper {
     override fun disconnect() {
         starIoExtManager.value?.disconnect()
         starIoExtManager.value = null
+    }
+
+    override suspend fun print(releasePort: Boolean): Boolean {
+        starIoExtManager.value?.lock?.lock()
+        val result = starIoExtManager.value?.port?.let {
+            starSdk.print(port = it as SMPort, releasePort = releasePort)
+        } ?: false
+        starIoExtManager.value?.lock?.unlock()
+       return result
     }
 }

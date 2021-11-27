@@ -14,7 +14,7 @@
 		B55C7D72274ED0A100BDC634 /* StarSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B558C5BF274E9FFB00BF1528 /* StarSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B55C7D75274FD8AF00BDC634 /* PrinterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55C7D74274FD8AF00BDC634 /* PrinterListViewModel.swift */; };
 		B5C7E446274EC25800AB9A2D /* StarSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7E445274EC25800AB9A2D /* StarSampleApp.swift */; };
-		B5EF145427505961006A35AE /* PrinterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF145327505961006A35AE /* PrinterDetails.swift */; };
+		B5EF145427505961006A35AE /* PrinterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF145327505961006A35AE /* PrinterDetailsView.swift */; };
 		B5EF145A27514882006A35AE /* PrinterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF145927514882006A35AE /* PrinterDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +42,7 @@
 		B55C7D74274FD8AF00BDC634 /* PrinterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterListViewModel.swift; sourceTree = "<group>"; };
 		B5C7E445274EC25800AB9A2D /* StarSampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarSampleApp.swift; path = ../../../../../../.Trash/StarSampleApp.swift; sourceTree = "<group>"; };
 		B5C7E447274EC46600AB9A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5EF145327505961006A35AE /* PrinterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetails.swift; sourceTree = "<group>"; };
+		B5EF145327505961006A35AE /* PrinterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailsView.swift; sourceTree = "<group>"; };
 		B5EF145927514882006A35AE /* PrinterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,7 +117,7 @@
 		B5EF145627514826006A35AE /* views */ = {
 			isa = PBXGroup;
 			children = (
-				B5EF145327505961006A35AE /* PrinterDetails.swift */,
+				B5EF145327505961006A35AE /* PrinterDetailsView.swift */,
 				B558C5AD274E995800BF1528 /* PrinterListView.swift */,
 			);
 			path = views;
@@ -217,7 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5C7E446274EC25800AB9A2D /* StarSampleApp.swift in Sources */,
-				B5EF145427505961006A35AE /* PrinterDetails.swift in Sources */,
+				B5EF145427505961006A35AE /* PrinterDetailsView.swift in Sources */,
 				B55C7D75274FD8AF00BDC634 /* PrinterListViewModel.swift in Sources */,
 				B5EF145A27514882006A35AE /* PrinterDetailsViewModel.swift in Sources */,
 				B558C5AE274E995800BF1528 /* PrinterListView.swift in Sources */,
