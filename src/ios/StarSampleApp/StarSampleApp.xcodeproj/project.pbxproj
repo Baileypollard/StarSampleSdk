@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B51E616E275545BA00B2C215 /* StarSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51E616D275545BA00B2C215 /* StarSampleApp.swift */; };
 		B558C5AE274E995800BF1528 /* PrinterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B558C5AD274E995800BF1528 /* PrinterListView.swift */; };
 		B558C5B0274E995900BF1528 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B558C5AF274E995900BF1528 /* Assets.xcassets */; };
 		B558C5B3274E995900BF1528 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B558C5B2274E995900BF1528 /* Preview Assets.xcassets */; };
 		B55C7D71274ED0A100BDC634 /* StarSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B558C5BF274E9FFB00BF1528 /* StarSdk.framework */; platformFilter = ios; };
 		B55C7D72274ED0A100BDC634 /* StarSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B558C5BF274E9FFB00BF1528 /* StarSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B55C7D75274FD8AF00BDC634 /* PrinterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55C7D74274FD8AF00BDC634 /* PrinterListViewModel.swift */; };
-		B5C7E446274EC25800AB9A2D /* StarSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C7E445274EC25800AB9A2D /* StarSampleApp.swift */; };
 		B5EF145427505961006A35AE /* PrinterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF145327505961006A35AE /* PrinterDetailsView.swift */; };
 		B5EF145A27514882006A35AE /* PrinterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF145927514882006A35AE /* PrinterDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -33,6 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B51E616D275545BA00B2C215 /* StarSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarSampleApp.swift; sourceTree = "<group>"; };
 		B558C5A8274E995800BF1528 /* StarSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B558C5AD274E995800BF1528 /* PrinterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterListView.swift; sourceTree = "<group>"; };
 		B558C5AF274E995900BF1528 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		B558C5BB274E9DE500BF1528 /* StarSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StarSdk.framework; path = ../StarSdk/build/bin/ios/debugFramework/StarSdk.framework; sourceTree = "<group>"; };
 		B558C5BF274E9FFB00BF1528 /* StarSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StarSdk.framework; path = ../../../build/bin/ios/debugFramework/StarSdk.framework; sourceTree = "<group>"; };
 		B55C7D74274FD8AF00BDC634 /* PrinterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterListViewModel.swift; sourceTree = "<group>"; };
-		B5C7E445274EC25800AB9A2D /* StarSampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarSampleApp.swift; path = ../../../../../../.Trash/StarSampleApp.swift; sourceTree = "<group>"; };
 		B5C7E447274EC46600AB9A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5EF145327505961006A35AE /* PrinterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailsView.swift; sourceTree = "<group>"; };
 		B5EF145927514882006A35AE /* PrinterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -82,9 +82,9 @@
 				B5EF145627514826006A35AE /* views */,
 				B5EF145527514817006A35AE /* viewmodel */,
 				B5C7E447274EC46600AB9A2D /* Info.plist */,
-				B5C7E445274EC25800AB9A2D /* StarSampleApp.swift */,
 				B558C5AF274E995900BF1528 /* Assets.xcassets */,
 				B558C5B1274E995900BF1528 /* Preview Content */,
+				B51E616D275545BA00B2C215 /* StarSampleApp.swift */,
 			);
 			path = StarSampleApp;
 			sourceTree = "<group>";
@@ -216,8 +216,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5C7E446274EC25800AB9A2D /* StarSampleApp.swift in Sources */,
 				B5EF145427505961006A35AE /* PrinterDetailsView.swift in Sources */,
+				B51E616E275545BA00B2C215 /* StarSampleApp.swift in Sources */,
 				B55C7D75274FD8AF00BDC634 /* PrinterListViewModel.swift in Sources */,
 				B5EF145A27514882006A35AE /* PrinterDetailsViewModel.swift in Sources */,
 				B558C5AE274E995800BF1528 /* PrinterListView.swift in Sources */,
@@ -265,7 +265,7 @@
 				DONT_GENERATE_INFOPLIST_FILE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = /Users/baileypollard/Desktop/StarSdk/build/bin/ios/debugFramework;
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../build/bin/ios/debugFramework";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -331,7 +331,7 @@
 				DONT_GENERATE_INFOPLIST_FILE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = /Users/baileypollard/Desktop/StarSdk/build/bin/ios/debugFramework;
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../build/bin/ios/debugFramework";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -363,7 +363,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"StarSampleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = /Users/baileypollard/Desktop/StarSdk/build/bin/ios/debugFramework;
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../build/bin/ios/debugFramework";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StarSampleApp/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth is used to find, connect and communicate with the various Shopify hardware including card readers and barcode scanners.";
@@ -399,7 +399,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"StarSampleApp/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = /Users/baileypollard/Desktop/StarSdk/build/bin/ios/debugFramework;
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../build/bin/ios/debugFramework";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StarSampleApp/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Bluetooth is used to find, connect and communicate with the various Shopify hardware including card readers and barcode scanners.";
