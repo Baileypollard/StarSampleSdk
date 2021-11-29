@@ -30,11 +30,11 @@ struct PrinterDetailsView: View {
                 HStack(spacing: 20.0) {
                     Button("Print and release port", action: {
                         viewModel.print(releasePort: true)
-                    }).disabled(viewModel.isPrinting)
+                    }).disabled(viewModel.isPrinting || viewModel.printerStatus == "Uninitialized")
                     
                     Button("Print do not release port", action: {
                         viewModel.print(releasePort: false)
-                    }).disabled(viewModel.isPrinting)
+                    }).disabled(viewModel.isPrinting || viewModel.printerStatus == "Uninitialized")
                 }
             }.padding()
         }.frame(
@@ -43,10 +43,20 @@ struct PrinterDetailsView: View {
             minHeight: 0,
             maxHeight: .infinity,
             alignment: .topLeading
-        ).onAppear(perform: {
-            viewModel.connect(portName: portInfo.portName)
-        }
-        ).onDisappear(perform: {
+        ).toolbar(content: {
+            ToolbarItemGroup(placement: .navigationBarTrailing, content: {
+                HStack(spacing: 20.0) {
+                    Button("Connect", action: {
+                        viewModel.connect(portName: portInfo.portName)
+                    }).disabled(viewModel.isConnecting || viewModel.printerStatus != "Uninitialized")
+                    
+                    Button("Disconnect", action: {
+                        viewModel.disconnect()
+                        viewModel.printerStatus = "Uninitialized"
+                    }).disabled(viewModel.printerStatus == "Uninitialized")
+                }
+            })
+        }).onDisappear(perform: {
             viewModel.disconnect()
             viewModel.printerStatus = "Uninitialized"
         })

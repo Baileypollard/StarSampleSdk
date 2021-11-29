@@ -18,10 +18,14 @@ class PrinterDetailsViewModel: ObservableObject {
     @Published
     var isPrinting: Bool = false
     
+    @Published
+    var isConnecting: Bool = false
+    
     init(starManager: StarManager) {
         self.starManager = starManager
         
         self.starManager?.printerStatus.collect(collector: Collector<String> { status in
+            self.isConnecting = false
             self.printerStatus = status
         }) { (unit, error) in
             // code which is executed if the Flow object completed
@@ -35,6 +39,7 @@ class PrinterDetailsViewModel: ObservableObject {
     }
 
     func connect(portName: String) {
+        isConnecting = true
         starManager?.connect(portName: portName)
     }
     
