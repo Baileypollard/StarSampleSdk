@@ -1,25 +1,14 @@
 package com.shopify.library.internal.star
 
-import StarIO.SMPort
-import StarIO.SM_TRUE
-import StarIO.StarPrinterStatus_2_
+import StarIO.*
 import StarIO_Extension.ISCBBuilder
 import StarIO_Extension.SCBCutPaperAction
 import StarIO_Extension.SCBPrintableAreaType
 import StarIO_Extension.StarIoExt
 import StarIO_Extension.StarIoExtEmulationStarGraphic
-import kotlinx.cinterop.CArrayPointer
-import kotlinx.cinterop.NativePlacement
-import kotlinx.cinterop.ObjCObjectVar
-import kotlinx.cinterop.addressOf
-import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.*
+import kotlinx.cinterop.nativeHeap.alloc
 import platform.Foundation.NSError
-import kotlinx.cinterop.alloc
-import kotlinx.cinterop.allocArray
-import kotlinx.cinterop.ptr
-import kotlinx.cinterop.set
-import kotlinx.cinterop.useContents
-import kotlinx.cinterop.usePinned
 import platform.CoreGraphics.CGFloat
 import platform.CoreGraphics.CGRectMake
 import platform.CoreGraphics.CGSizeMake
@@ -81,6 +70,40 @@ internal class IosStarSdk : StarSdk {
                 } catch (e: Exception) {
                     NSLog("[IosStarSdk] Release port failed $e")
                 }
+            }
+        }
+    }
+
+    override suspend fun getWifiPrinterStatus(portInfo: PortInfo, timesToReleasePort: Int): String {
+        memScoped {
+            val portConnectionError = alloc<ObjCObjectVar<NSError?>>()
+            val port = SMPort.getPort(
+                portInfo.portName,
+                ";l5000",
+                10000.toUInt(),
+                portConnectionError.ptr
+            )
+            return if (port != null) {
+                // get printer status
+                val status = alloc<StarPrinterStatus_2_>()
+                port.getParsedStatus(status.ptr, 2)
+
+                // release port
+                repeat(timesToReleasePort) {
+                    SMPort.releasePort(port)
+                }
+
+                // return status of either "Online" or "Offline" to caller
+                if (status.offline == SM_TRUE) {
+                    NSLog("[IosStarSdk] Printer is OFFLINE")
+                    "Offline"
+                } else {
+                    NSLog("[IosStarSdk] Printer is ONLINE")
+                    "Online"
+                }
+            } else {
+                NSLog("[IosStarSdk] Failed to open printer port, with an error of: ${portConnectionError.value}")
+                "Offline"
             }
         }
     }

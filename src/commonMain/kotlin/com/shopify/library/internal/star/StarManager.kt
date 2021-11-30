@@ -1,10 +1,9 @@
 package com.shopify.library.internal.star
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collect
 
 class StarManager(
     private val starSdk: StarSdk,
@@ -18,7 +17,16 @@ class StarManager(
     private val _printResult = MutableSharedFlow<Boolean>()
     val printResult = _printResult.asSharedFlow()
 
-    val printerStatus = starIoExtManagerWrapper.printerStatus
+    private val _printerStatus = MutableSharedFlow<String>()
+    val printerStatus = _printerStatus.asSharedFlow()
+
+    init {
+        backgroundScope.launch {
+            starIoExtManagerWrapper.printerStatus.collect { status ->
+                _printerStatus.emit(status)
+            }
+        }
+    }
 
     fun discoverBluetoothPrinters() {
         backgroundScope.launch {
@@ -49,6 +57,14 @@ class StarManager(
             starIoExtManagerWrapper.print(releasePort = releasePort).also {
                 _printResult.emit(it)
             }
+        }
+    }
+
+    fun getWifiPrinterStatus(portInfo: PortInfo, timesToReleasePort: Int) {
+        backgroundScope.launch {
+            _printerStatus.emit("Retrieving...")
+            val status = starSdk.getWifiPrinterStatus(portInfo, timesToReleasePort)
+            _printerStatus.emit(status)
         }
     }
 }
