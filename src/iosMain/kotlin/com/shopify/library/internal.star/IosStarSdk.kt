@@ -7,7 +7,6 @@ import StarIO_Extension.SCBPrintableAreaType
 import StarIO_Extension.StarIoExt
 import StarIO_Extension.StarIoExtEmulationStarGraphic
 import kotlinx.cinterop.*
-import kotlinx.cinterop.nativeHeap.alloc
 import platform.Foundation.NSError
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.allocArray
