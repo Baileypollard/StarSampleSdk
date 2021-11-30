@@ -361,7 +361,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StarSampleApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 9CRDRQAMFW;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../build/bin/ios/debugFramework";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -397,7 +397,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StarSampleApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 9CRDRQAMFW;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../build/bin/ios/debugFramework";
 				GENERATE_INFOPLIST_FILE = YES;
