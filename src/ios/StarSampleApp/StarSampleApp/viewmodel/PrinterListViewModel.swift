@@ -15,10 +15,14 @@ class PrinterListViewModel: ObservableObject {
     @Published
     var printerList: [PortInfo] = []
     
+    @Published
+    var isSearching: Bool = false
+    
     init(starManager: StarManager) {
         self.starManager = starManager
         
         self.starManager?.printer.collect(collector: Collector<[PortInfo]> { portInfoList in
+            self.isSearching = false
             self.printerList = portInfoList
         }) { (unit, error) in
             // code which is executed if the Flow object completed
@@ -26,10 +30,14 @@ class PrinterListViewModel: ObservableObject {
     }
     
     func discoverBluetoothPrinters() {
+        printerList = []
+        isSearching = true
         starManager?.discoverBluetoothPrinters()
     }
     
     func discoverNetworkPrinters() {
+        printerList = []
+        isSearching = true
         starManager?.discoverNetworkPrinters()
     }
 }

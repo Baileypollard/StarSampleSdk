@@ -36,6 +36,11 @@ struct PrinterListView: View {
                             }
                         }
                     }
+                    .overlay(Group {
+                        if list.isEmpty {
+                            viewModel.isSearching ? Text("Discovering printers...") : Text("No printers found")
+                        }
+                    })
                     .navigationTitle("Printers")
                 }
             }
