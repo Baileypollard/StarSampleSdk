@@ -7,21 +7,25 @@ import StarIO_Extension.SCBPrintableAreaType
 import StarIO_Extension.StarIoExt
 import StarIO_Extension.StarIoExtEmulationStarGraphic
 import kotlinx.cinterop.*
-import kotlinx.cinterop.nativeHeap.alloc
 import platform.Foundation.NSError
-import platform.CoreGraphics.CGFloat
-import platform.CoreGraphics.CGRectMake
-import platform.CoreGraphics.CGSizeMake
+import kotlinx.cinterop.alloc
+import kotlinx.cinterop.allocArray
+import kotlinx.cinterop.ptr
+import kotlinx.cinterop.set
+import kotlinx.cinterop.useContents
+import kotlinx.cinterop.usePinned
 import platform.Foundation.NSBundle
 import platform.Foundation.NSLog
 import platform.Foundation.NSMutableData
-import platform.UIKit.UIGraphicsBeginImageContext
-import platform.UIKit.UIGraphicsEndImageContext
-import platform.UIKit.UIGraphicsGetImageFromCurrentImageContext
 import platform.UIKit.UIImage
 import platform.posix.memcpy
 import platform.posix.u_int8_tVar
 
+/**
+ * iOS's implementation of the [StarSdk] that allows us to interact directly with the [StarIO] SDK.
+ * Provides us with the functionality needed to discover printers,
+ * retrieve status updates and print our sample receipt
+ */
 internal class IosStarSdk : StarSdk {
     override suspend fun searchPrinters(target: StarSdk.StarQuery): List<PortInfo> {
         return SMPort.searchPrinter(target.query)

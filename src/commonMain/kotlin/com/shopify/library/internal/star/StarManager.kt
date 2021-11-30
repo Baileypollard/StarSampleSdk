@@ -5,6 +5,11 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.collect
 
+/**
+ * Common class between Android and iOS that can share business logic between both platforms.
+ * Writing this code in kotlin allows us to use coroutines on iOS and Android which allows us
+ * to easily write async code on both platforms.
+ */
 class StarManager(
     private val starSdk: StarSdk,
     private val starIoExtManagerWrapper: StarIoExtManagerWrapper,
