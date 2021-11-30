@@ -12,6 +12,11 @@ import platform.Foundation.NSError
 import platform.darwin.NSObject
 import kotlin.native.concurrent.freeze
 
+/**
+ * iOS wrapper around the [StarIoExtManager] provided by the StarSDK.
+ * This class allows us to connect, print and observe connection status updates for a
+ * given Star Micronics printer.
+ */
 class IosStarIoExtManagerWrapper(private val starSdk: StarSdk) : StarIoExtManagerWrapper {
     private var starIoExtManager = atomic<StarIoExtManager?>(null)
 
