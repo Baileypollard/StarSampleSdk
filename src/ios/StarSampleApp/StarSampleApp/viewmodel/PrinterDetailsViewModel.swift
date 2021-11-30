@@ -51,6 +51,8 @@ class PrinterDetailsViewModel: ObservableObject {
         isPrinting = true
         starManager?.print(releasePort: releasePort)
     }
+
+    func getWifiPrinterStatus(portInfo: PortInfo, timesToReleasePort: Int32) {
+        starManager?.getWifiPrinterStatus(portInfo: portInfo, timesToReleasePort: timesToReleasePort)
+    }
 }
-
-

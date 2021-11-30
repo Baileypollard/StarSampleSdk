@@ -21,11 +21,11 @@ struct PrinterDetailsView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10.0) {
                 Text(portInfo.modelName).font(.largeTitle)
-                Text(portInfo.macAddress)
-                Text(portInfo.portName)
+                Text("MAC address: \(portInfo.macAddress)")
+                Text("Port name: \(portInfo.portName)")
                 
                 if let status = viewModel.printerStatus {
-                    Text(status)
+                    Text("Printer status: \(status)")
                 }
                 HStack(spacing: 20.0) {
                     Button("Print and release port", action: {
@@ -35,7 +35,16 @@ struct PrinterDetailsView: View {
                     Button("Print do not release port", action: {
                         viewModel.print(releasePort: false)
                     }).disabled(viewModel.isPrinting || viewModel.printerStatus == "Uninitialized")
-                }
+                }.padding(.top, 40.0)
+                HStack(spacing: 20.0) {
+                    Button("Get status, release port ONCE", action: {
+                        viewModel.getWifiPrinterStatus(portInfo: portInfo, timesToReleasePort: 1)
+                    })
+
+                    Button("Get status, release port TWICE", action: {
+                        viewModel.getWifiPrinterStatus(portInfo: portInfo, timesToReleasePort: 2)
+                    })
+                }.padding(.top, 20.0)
             }.padding()
         }.frame(
             minWidth: 0,
