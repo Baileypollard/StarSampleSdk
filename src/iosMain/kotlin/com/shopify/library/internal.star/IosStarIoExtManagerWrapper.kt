@@ -9,6 +9,7 @@ import kotlinx.atomicfu.atomic
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import platform.Foundation.NSError
+import platform.Foundation.NSLog
 import platform.darwin.NSObject
 import kotlin.native.concurrent.freeze
 
@@ -24,6 +25,7 @@ class IosStarIoExtManagerWrapper(private val starSdk: StarSdk) : StarIoExtManage
     override val printerStatus = _printerStatus.asStateFlow()
 
     override fun connect(portName: String) {
+        NSLog("Connecting to StarIoExtManager with portName = $portName")
         starIoExtManager.value = StarIoExtManager(StarIoExtManagerTypeStandard, portName, "", 10_000).apply {
             delegate = object : NSObject(), StarIoExtManagerDelegateProtocol {
                 override fun manager(manager: StarIoExtManager, didConnectPort: String) {
@@ -32,6 +34,7 @@ class IosStarIoExtManagerWrapper(private val starSdk: StarSdk) : StarIoExtManage
 
                 override fun manager(manager: StarIoExtManager, didFailToConnectPort: String, error: NSError?) {
                     _printerStatus.value = "Initial connection failed"
+                    NSLog("error when connecting = ${error?.localizedDescription}")
                 }
 
                 override fun didPrinterImpossible() {
@@ -40,6 +43,16 @@ class IosStarIoExtManagerWrapper(private val starSdk: StarSdk) : StarIoExtManage
 
                 override fun didAccessoryConnectFailure() {
                     _printerStatus.value = "didAccessoryConnectFailure"
+                }
+
+                override fun didAccessoryConnectFailure(manager: StarIoExtManager?) {
+                    NSLog("in didAccessoryConnectFailure")
+                    NSLog("member manager == passed manager? ${starIoExtManager.value == manager}")
+                }
+
+                override fun didAccessoryConnectSuccess(manager: StarIoExtManager?) {
+                    NSLog("in didAccessoryConnectSuccess")
+                    NSLog("member manager == passed manager? ${starIoExtManager.value == manager}")
                 }
 
                 override fun didPrinterOnline() {
@@ -56,8 +69,13 @@ class IosStarIoExtManagerWrapper(private val starSdk: StarSdk) : StarIoExtManage
     }
 
     override fun disconnect() {
-        starIoExtManager.value?.disconnect()
+//        starIoExtManager.value?.port?.let {
+//            NSLog("releasing port...")
+//            SMPort.releasePort(it as SMPort)
+//        }
+        NSLog("disconnect result = ${starIoExtManager.value?.disconnect()}")
         starIoExtManager.value = null
+//        kotlin.native.internal.GC.collect()
     }
 
     override suspend fun print(releasePort: Boolean): Boolean {

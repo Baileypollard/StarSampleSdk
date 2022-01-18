@@ -29,6 +29,11 @@ class StarManager(
         backgroundScope.launch {
             starIoExtManagerWrapper.printerStatus.collect { status ->
                 _printerStatus.emit(status)
+//
+//                if (status == "didAccessoryConnectFailure") {
+//                    disconnect()
+//                    connect("BT:TSP100")
+//                }
             }
         }
     }
