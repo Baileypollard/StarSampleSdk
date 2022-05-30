@@ -11,7 +11,7 @@
 #import <SMPort.h>
 #import <ExternalAccessoryPort.h>
 
-#import "StarIoExtManagerDelegate.h"
+#import <Internal/StarIoExtManagerDelegate.h>
 
 typedef NS_ENUM(NSInteger, StarIoExtManagerType) {
     StarIoExtManagerTypeStandard = 0,

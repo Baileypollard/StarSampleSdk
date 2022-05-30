@@ -5,7 +5,7 @@
 //  Copyright (c) 2018 Star Micronics. All rights reserved.
 //
 
-#import "StarIoExtManagerBaseDelegate.h"
+#import <Internal/StarIoExtManagerBaseDelegate.h>
 
 
 @protocol StarIoExtManagerDelegate<StarIoExtManagerBaseDelegate>

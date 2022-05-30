@@ -9,16 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <ExternalAccessory/ExternalAccessory.h>
 
+#ifdef TARGET_OS_IPHONE
+    #include <starmicronics/StarIOPort.h>
+    #import "enum.h"
+#else
+  #include <starmicronics/StarIOPort.h>
+#endif
 
-#include <StarIOPort.h>
-
-#import "enum.h"
 
 @interface ExternalAccessoryPort : NSObject<NSStreamDelegate> {
     NSString *portName_;
     NSString *portSettings_;
     u_int32_t timeout_;
-    
+
     EAAccessory *_selectedAccessory;
     EASession *_session;
 
@@ -27,6 +30,7 @@
 
 @property(readonly, getter = isConnected) BOOL connected;
 @property(readwrite) u_int32_t endCheckedBlockTimeoutMillis;
+@property(readwrite) u_int32_t holdPrintTimeoutMillis;
 @property(assign, nonatomic) NSInteger dataTimeoutSeconds;
 
 @property(retain, readonly) NSString *firmwareInformation;
@@ -76,7 +80,7 @@
  *  @return     正常終了した場合は新しいendCheckedBlockTimeoutMillis[ミリ秒], 無効の場合は0, エラー発生時は-1を返す。
  */
 - (NSInteger)retrieveButtonSecurityTimeout;
-- (BOOL)beginCheckedBlock:(StarPrinterStatus_2 *)starPrinterStatus level:(u_int32_t)level;
+- (BOOL)beginCheckedBlock:(StarPrinterStatus_2 *)starPrinterStatus level:(u_int32_t)level resultCode:(NSInteger *)resultCode;
 - (BOOL)endCheckedBlock:(StarPrinterStatus_2 *)starPrinterStatus level:(u_int32_t)level;
 /*!
  *  Bluetoothの接続状況を返す。

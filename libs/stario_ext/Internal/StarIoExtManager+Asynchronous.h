@@ -7,7 +7,7 @@
 
 #pragma once
 
-#import "StarIoExtManager.h"
+#import <Internal/StarIoExtManager.h>
 
 
 @interface StarIoExtManager(Asynchronous)

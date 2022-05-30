@@ -9,30 +9,23 @@
 #import <Foundation/Foundation.h>
 #import <ExternalAccessory/ExternalAccessory.h>
 
-#ifdef TARGET_OS_IPHONE
-#ifdef BUILDING_STARIO
-#include <StarIOPort.h>
-#else
-#include <StarIOPort.h>
 
-#endif
-#else
-#include <StarIOPort.h>
-#endif
+#include <starmicronics/StarIOPort.h>
 
 @interface WBluetoothPort : NSObject<NSStreamDelegate> {
     NSString *portName_;
     NSString *portSettings_;
     u_int32_t timeout_;
-    
+
     EAAccessory *_selectedAccessory;
     EASession *_session;
 }
 
 @property (readonly, getter = isConnected) BOOL connected;
 @property (readwrite) u_int32_t endCheckedBlockTimeoutMillis;
+@property (readwrite) u_int32_t holdPrintTimeoutMillis;
 
-@property (retain, readonly) NSString *firmwareInformation;
+@property (retain) NSString *firmwareInformation;
 
 @property(retain, nonatomic) NSString *name;
 @property(retain, nonatomic) NSString *serialNumber;

@@ -9,23 +9,16 @@
 #import <Foundation/Foundation.h>
 
 #ifdef TARGET_OS_IPHONE
-    #ifdef BUILDING_STARIO
-        #include <StarIOPort.h>
-    #else
-        #include <StarIOPort.h>
-    #endif
+    #include <starmicronics/StarIOPort.h>
+    #import "WBluetoothPort.h"
+    #import "ExternalAccessoryPort.h"
+    #import "Lock.h"
+    #import "SMFileLogger.h"
+    #import "SMStarIOResultCode.h"
+    #import "exceptions/PortException.h"
 #else
-    #include <StarIOPort.h>
+    #include <starmicronics/StarIOPort.h>
 #endif
-
-#import "WBluetoothPort.h"
-#import "ExternalAccessoryPort.h"
-#import "Lock.h"
-#import "SMFileLogger.h"
-#import "SMStarIOResultCode.h"
-
-#import "PortException.h"
-
 
 @interface PortInfo : NSObject
 
@@ -56,6 +49,8 @@
 @property(nonatomic) NSUInteger connectionID;
 
 @property(assign, readwrite, nonatomic) u_int32_t endCheckedBlockTimeoutMillis;
+
+@property(assign, readwrite, nonatomic) u_int32_t holdPrintTimeoutMillis;
 
 + (NSString *)StarIOVersion;
 
