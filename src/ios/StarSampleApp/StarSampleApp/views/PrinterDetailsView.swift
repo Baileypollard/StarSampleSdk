@@ -28,22 +28,23 @@ struct PrinterDetailsView: View {
                     Text("Printer status: \(status)")
                 }
                 HStack(spacing: 20.0) {
-                    Button("Print and release port", action: {
+                    Button("Print and release port (Wi-Fi Printers)", action: {
                         viewModel.print(releasePort: true)
                     }).disabled(viewModel.isPrinting || viewModel.printerStatus == "Uninitialized")
                     
-                    Button("Print do not release port", action: {
+                    Button("Print do not release port (Bluetooth Printers)", action: {
                         viewModel.print(releasePort: false)
                     }).disabled(viewModel.isPrinting || viewModel.printerStatus == "Uninitialized")
                 }.padding(.top, 40.0)
                 HStack(spacing: 20.0) {
-                    Button("Get status, release port ONCE", action: {
+                    Button("Get status (Wi-Fi printers)", action: {
                         viewModel.getWifiPrinterStatus(portInfo: portInfo, timesToReleasePort: 1)
                     })
 
-                    Button("Get status, release port TWICE", action: {
-                        viewModel.getWifiPrinterStatus(portInfo: portInfo, timesToReleasePort: 2)
-                    })
+                    // Hiding this as retriving status works now with releasing port once
+                    //  Button("Get status, release port TWICE", action: {
+                    //      viewModel.getWifiPrinterStatus(portInfo: portInfo, timesToReleasePort: 2)
+                    //  })
                 }.padding(.top, 20.0)
             }.padding()
         }.frame(
