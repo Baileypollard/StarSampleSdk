@@ -1,6 +1,6 @@
 language = Objective-C
 package = StarIO
-compilerOpts = -Ilibs/stario -DNS_FORMAT_ARGUMENT(A)= -D_Nullable_result=_Nullable
+compilerOpts = -Ilibs/stario -Ilibs/stario/exceptions -Ilibs/stario/starmicronics -Ilibs/stario/starmicronics/platform -DNS_FORMAT_ARGUMENT(A)= -D_Nullable_result=_Nullable
 headers = BluetoothPort.h enum.h ExternalAccessoryPort.h lock.h SMBluetoothManager.h SMFileLogger.h SMLogger.h SMPort.h SMPortSwift.h SMProxiPRNTManager.h SMStarIOResultCode.h PortException.h USBPort.h WBluetoothPort.h Platform.h PreventingNameConflicts.h StarIOPort.h Mac.h
 linkerOpts = -framework CoreBluetooth -framework ExternalAccessory -framework CoreGraphics -framework UIKit -ObjC
 libraryPaths = libs/bin

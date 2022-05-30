@@ -7,7 +7,7 @@
 
 #pragma once
 
-#import "StarIoExtManager.h"
+#import <Internal/StarIoExtManager.h>
 
 typedef NS_ENUM(NSInteger, StarIoExtManagerStatus) {
     StarIoExtManagerStatusInvalid                 __attribute__((unavailable("Not available. Please change to StarIoExtManager...StatusInvalid."))) = 0,

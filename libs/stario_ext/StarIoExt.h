@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Internal/StarIoExtResultCode.h"
+#import <Internal/StarIoExtResultCode.h>
 
-#import "ISCBBuilder.h"
-#import "ISDCBBuilder.h"
-#import "ISMCBBuilder.h"
+#import <ISCBBuilder.h>
+#import <ISDCBBuilder.h>
+#import <ISMCBBuilder.h>
 
-#import "ISCPConnectParser.h"
+#import <ISCPConnectParser.h>
 
 typedef NS_ENUM(NSInteger, StarIoExtEmulation) {     // Don't insert!
     StarIoExtEmulationNone = 0,
