@@ -54,14 +54,23 @@ internal class IosStarSdk : StarSdk {
                 var bytesWritten: UInt = 0u
                 val bytesToWrite: UInt = commands.size.toUInt()
 
+                val writeBlockError = alloc<ObjCObjectVar<NSError?>>()
                 while (bytesWritten < bytesToWrite) {
                     val size = bytesToWrite - bytesWritten
-                    val totalWritten = port.writePort(buffer, bytesWritten, size)
+                    val totalWritten = port.writePort(buffer, bytesWritten, size, writeBlockError.ptr)
 
+                    if (writeBlockError.value != null) {
+                        NSLog("[IosStarSdk] failure during printing with error of ${writeBlockError.value}")
+                        return false
+                    }
                     bytesWritten += totalWritten
                 }
                 NSLog("[IosStarSdk] print success")
                 port.endCheckedBlock(printerStatus.ptr, 2, checkedBlockError.ptr)
+                if (checkedBlockError.value != null) {
+                    NSLog("[IosStarSdk] Internal failure during printing with an error of: ${checkedBlockError.value}")
+                    return false
+                }
                 return true
             } catch (e: Exception) {
                 NSLog("[IosStarSdk] print failed $e")
