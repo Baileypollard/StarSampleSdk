@@ -49,6 +49,14 @@ class StarManager(
         }
     }
 
+    fun discoverAllPrinters() {
+        backgroundScope.launch {
+            starSdk.searchPrinters(StarSdk.StarQuery.All).also {
+                _printers.emit(it)
+            }
+        }
+    }
+
     fun connect(portName: String) {
         starIoExtManagerWrapper.connect(portName = portName)
     }
