@@ -28,10 +28,17 @@ import platform.posix.u_int8_tVar
  */
 internal class IosStarSdk : StarSdk {
     override suspend fun searchPrinters(target: StarSdk.StarQuery): List<PortInfo> {
-        return SMPort.searchPrinter(target.query)
-            ?.filterIsInstance<StarIO.PortInfo>()
-            ?.map { IosPortInfo(it) }
-            ?: emptyList()
+        memScoped {
+            val searchPrintersError = alloc<ObjCObjectVar<NSError?>>()
+            val portInfos = SMPort.searchPrinter(target.query, searchPrintersError.ptr)
+            searchPrintersError.value?.let {
+                NSLog("Error searching printers: ${it.localizedDescription}")
+            }
+            return portInfos
+                ?.filterIsInstance<StarIO.PortInfo>()
+                ?.map { IosPortInfo(it) }
+                ?: emptyList()
+        }
     }
 
     override suspend fun print(port: SMPort, releasePort: Boolean): Boolean {

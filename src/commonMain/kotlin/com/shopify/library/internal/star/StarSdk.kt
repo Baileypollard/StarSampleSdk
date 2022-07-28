@@ -13,6 +13,7 @@ interface StarSdk {
     enum class StarQuery(val query: String) {
         Bluetooth("BT:"),
         Network("TCP:"),
-        Usb("USB:")
+        Usb("USB:"),
+        All("All:")
     }
 }

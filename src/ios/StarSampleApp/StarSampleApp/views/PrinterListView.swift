@@ -25,6 +25,9 @@ struct PrinterListView: View {
                     Button("Scan Network", action: {
                         viewModel.discoverNetworkPrinters()
                     })
+                    Button("Scan All", action: {
+                        viewModel.discoverAllPrinters()
+                    })
                 }.padding()
                 if let list = viewModel.printerList {
                     List(list, id: \.macAddress) { portInfo in

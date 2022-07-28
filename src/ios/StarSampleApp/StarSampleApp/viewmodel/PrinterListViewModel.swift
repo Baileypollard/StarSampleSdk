@@ -40,6 +40,12 @@ class PrinterListViewModel: ObservableObject {
         isSearching = true
         starManager?.discoverNetworkPrinters()
     }
+    
+    func discoverAllPrinters() {
+        printerList = []
+        isSearching = true
+        starManager?.discoverAllPrinters()
+    }
 }
 
 class Collector<T>: Kotlinx_coroutines_coreFlowCollector {
