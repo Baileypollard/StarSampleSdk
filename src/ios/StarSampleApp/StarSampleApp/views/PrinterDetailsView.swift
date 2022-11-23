@@ -40,6 +40,10 @@ struct PrinterDetailsView: View {
                     Button("Get status (Wi-Fi printers)", action: {
                         viewModel.getWifiPrinterStatus(portInfo: portInfo, timesToReleasePort: 1)
                     })
+                    
+                    Button("Release Port", action: {
+                        viewModel.releasePort()
+                    })
 
                     // Hiding this as retriving status works now with releasing port once
                     //  Button("Get status, release port TWICE", action: {

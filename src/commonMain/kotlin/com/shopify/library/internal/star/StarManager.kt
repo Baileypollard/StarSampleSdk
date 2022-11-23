@@ -80,4 +80,8 @@ class StarManager(
             _printerStatus.emit(status)
         }
     }
+
+    fun releasePort() {
+        backgroundScope.launch { starSdk.releasePort() }
+    }
 }

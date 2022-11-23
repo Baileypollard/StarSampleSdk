@@ -6,6 +6,7 @@ import StarIO_Extension.SCBCutPaperAction
 import StarIO_Extension.SCBPrintableAreaType
 import StarIO_Extension.StarIoExt
 import StarIO_Extension.StarIoExtEmulationStarGraphic
+import kotlinx.atomicfu.atomic
 import kotlinx.cinterop.*
 import platform.Foundation.NSError
 import kotlinx.cinterop.alloc
@@ -27,6 +28,9 @@ import platform.posix.u_int8_tVar
  * retrieve status updates and print our sample receipt
  */
 internal class IosStarSdk : StarSdk {
+
+    private val port = atomic<SMPort?>(null)
+
     override suspend fun searchPrinters(target: StarSdk.StarQuery): List<PortInfo> {
         memScoped {
             val searchPrintersError = alloc<ObjCObjectVar<NSError?>>()
@@ -97,24 +101,30 @@ internal class IosStarSdk : StarSdk {
     override suspend fun getWifiPrinterStatus(portInfo: PortInfo, timesToReleasePort: Int): String {
         memScoped {
             val portConnectionError = alloc<ObjCObjectVar<NSError?>>()
-            val port = SMPort.getPort(
+
+            val port = this@IosStarSdk.port.value ?: SMPort.getPort(
                 portInfo.portName,
                 ";l5000",
                 10000.toUInt(),
                 portConnectionError.ptr
-            )
+            ).also { this@IosStarSdk.port.value = it }
+
             return if (port != null) {
                 // get printer status
                 val status = alloc<StarPrinterStatus_2_>()
-                port.getParsedStatus(status.ptr, 2)
+                val parsedStatusError = alloc<ObjCObjectVar<NSError?>>()
+                port.getParsedStatus(status.ptr, 2, parsedStatusError.ptr)
 
                 // release port
                 repeat(timesToReleasePort) {
-                    SMPort.releasePort(port)
+                    releasePort()
                 }
 
                 // return status of either "Online" or "Offline" to caller
-                if (status.offline == SM_TRUE) {
+                if (parsedStatusError.value != null) {
+                    NSLog("[IosStarSdk] Received parsed status error: ${parsedStatusError.value}")
+                    "Offline"
+                } else if (status.offline == SM_TRUE) {
                     NSLog("[IosStarSdk] Printer is OFFLINE")
                     "Offline"
                 } else {
@@ -123,9 +133,16 @@ internal class IosStarSdk : StarSdk {
                 }
             } else {
                 NSLog("[IosStarSdk] Failed to open printer port, with an error of: ${portConnectionError.value}")
+                releasePort()
                 "Offline"
             }
         }
+    }
+
+    override fun releasePort() {
+        port.value?.let { SMPort.releasePort(it) }
+        port.value = null
+        kotlin.native.internal.GC.collect()
     }
 
     // Creates the print request with the given image
