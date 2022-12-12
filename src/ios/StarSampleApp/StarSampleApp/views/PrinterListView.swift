@@ -53,7 +53,7 @@ struct PrinterListView: View {
 
 struct PrinterListView_Previews: PreviewProvider {
     static var previews: some View {
-        let starManager = IosStarManager.companion.create()
+        let starManager = IosStarManager.companion.create(statusHelper: StarStatusHelper())
         PrinterListView(viewModel: PrinterListViewModel(starManager: starManager), starManager: starManager)
     }
 }

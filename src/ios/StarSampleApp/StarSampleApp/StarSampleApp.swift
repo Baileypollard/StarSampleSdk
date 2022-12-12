@@ -10,7 +10,7 @@ import StarSdk
 @main
 struct PrinterSDK_MiniAppApp: App {
     var body: some Scene {
-        let starManager = IosStarManager.companion.create()
+        let starManager = IosStarManager.companion.create(statusHelper: StarStatusHelper())
         WindowGroup {
             PrinterListView(viewModel: PrinterListViewModel(starManager: starManager), starManager: starManager)
         }

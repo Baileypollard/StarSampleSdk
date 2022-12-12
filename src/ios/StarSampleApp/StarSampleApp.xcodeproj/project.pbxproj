@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A7A0A152947C31F0068ED8F /* StarStatusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A0A142947C31F0068ED8F /* StarStatusHelper.swift */; };
 		B51E616E275545BA00B2C215 /* StarSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51E616D275545BA00B2C215 /* StarSampleApp.swift */; };
 		B558C5AE274E995800BF1528 /* PrinterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B558C5AD274E995800BF1528 /* PrinterListView.swift */; };
 		B558C5B0274E995900BF1528 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B558C5AF274E995900BF1528 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4A7A0A142947C31F0068ED8F /* StarStatusHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarStatusHelper.swift; sourceTree = "<group>"; };
 		B51E616D275545BA00B2C215 /* StarSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarSampleApp.swift; sourceTree = "<group>"; };
 		B558C5A8274E995800BF1528 /* StarSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B558C5AD274E995800BF1528 /* PrinterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterListView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				B558C5AF274E995900BF1528 /* Assets.xcassets */,
 				B558C5B1274E995900BF1528 /* Preview Content */,
 				B51E616D275545BA00B2C215 /* StarSampleApp.swift */,
+				4A7A0A142947C31F0068ED8F /* StarStatusHelper.swift */,
 			);
 			path = StarSampleApp;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EF145427505961006A35AE /* PrinterDetailsView.swift in Sources */,
+				4A7A0A152947C31F0068ED8F /* StarStatusHelper.swift in Sources */,
 				B51E616E275545BA00B2C215 /* StarSampleApp.swift in Sources */,
 				B55C7D75274FD8AF00BDC634 /* PrinterListViewModel.swift in Sources */,
 				B5EF145A27514882006A35AE /* PrinterDetailsViewModel.swift in Sources */,
@@ -361,7 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StarSampleApp/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8HW4NARVAB;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../build/bin/ios/debugFramework";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -381,7 +385,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Shopify.StarSampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = Shopify.StarSampleAppfff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -397,7 +401,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StarSampleApp/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8HW4NARVAB;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../build/bin/ios/debugFramework";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -417,7 +421,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Shopify.StarSampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = Shopify.StarSampleAppfff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

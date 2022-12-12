@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.collect
  * to easily write async code on both platforms.
  */
 class StarManager(
+    private val statusHelper: StatusHelper,
     private val starSdk: StarSdk,
     private val starIoExtManagerWrapper: StarIoExtManagerWrapper,
     private val backgroundScope: CoroutineScope = CoroutineScope(Dispatchers.Default),
@@ -76,7 +77,8 @@ class StarManager(
     fun getWifiPrinterStatus(portInfo: PortInfo, timesToReleasePort: Int) {
         backgroundScope.launch {
             _printerStatus.emit("Retrieving...")
-            val status = starSdk.getWifiPrinterStatus(portInfo, timesToReleasePort)
+//            val status = starSdk.getWifiPrinterStatus(portInfo, timesToReleasePort)
+            val status = statusHelper.getStatus(portInfo.portName)
             _printerStatus.emit(status)
         }
     }

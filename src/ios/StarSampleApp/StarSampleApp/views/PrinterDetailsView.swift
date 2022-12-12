@@ -80,7 +80,7 @@ struct PrinterDetailsView: View {
 
 struct PrinterDetails_Previews: PreviewProvider {
     static var previews: some View {
-        PrinterDetailsView(viewModel: PrinterDetailsViewModel(starManager: IosStarManager.companion.create()), portInfo: TestPortInfo())
+        PrinterDetailsView(viewModel: PrinterDetailsViewModel(starManager: IosStarManager.companion.create(statusHelper: StarStatusHelper())), portInfo: TestPortInfo())
     }
 }
 
