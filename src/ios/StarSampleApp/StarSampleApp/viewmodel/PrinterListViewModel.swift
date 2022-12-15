@@ -13,7 +13,7 @@ class PrinterListViewModel: ObservableObject {
     private var starManager: StarManager? = nil
     
     @Published
-    var printerList: [PortInfo] = []
+    var printerList: [KmmPortInfo] = []
     
     @Published
     var isSearching: Bool = false
@@ -21,7 +21,7 @@ class PrinterListViewModel: ObservableObject {
     init(starManager: StarManager) {
         self.starManager = starManager
         
-        self.starManager?.printer.collect(collector: Collector<[PortInfo]> { portInfoList in
+        self.starManager?.printer.collect(collector: Collector<[KmmPortInfo]> { portInfoList in
             self.isSearching = false
             self.printerList = portInfoList
         }) { (unit, error) in

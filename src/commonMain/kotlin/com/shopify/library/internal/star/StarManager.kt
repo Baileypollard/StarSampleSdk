@@ -17,7 +17,7 @@ class StarManager(
     private val backgroundScope: CoroutineScope = CoroutineScope(Dispatchers.Default),
 ) {
 
-    private val _printers = MutableSharedFlow<List<PortInfo>>()
+    private val _printers = MutableSharedFlow<List<KmmPortInfo>>()
     val printer = _printers.asSharedFlow()
 
     private val _printResult = MutableSharedFlow<Boolean>()
@@ -27,10 +27,8 @@ class StarManager(
     val printerStatus = _printerStatus.asSharedFlow()
 
     init {
-        backgroundScope.launch {
-            starIoExtManagerWrapper.printerStatus.collect { status ->
-                _printerStatus.emit(status)
-            }
+        starIoExtManagerWrapper.setStatusListener { status ->
+            backgroundScope.launch { _printerStatus.emit(status) }
         }
     }
 
@@ -74,7 +72,7 @@ class StarManager(
         }
     }
 
-    fun getWifiPrinterStatus(portInfo: PortInfo, timesToReleasePort: Int) {
+    fun getWifiPrinterStatus(portInfo: KmmPortInfo, timesToReleasePort: Int) {
         backgroundScope.launch {
             _printerStatus.emit("Retrieving...")
 //            val status = starSdk.getWifiPrinterStatus(portInfo, timesToReleasePort)

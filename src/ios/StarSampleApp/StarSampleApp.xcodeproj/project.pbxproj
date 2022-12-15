@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A2BB7822947DD620086165B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2BB7812947DD620086165B /* CoreBluetooth.framework */; };
+		4A2BB7842947DD690086165B /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2BB7832947DD690086165B /* ExternalAccessory.framework */; };
 		4A7A0A152947C31F0068ED8F /* StarStatusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7A0A142947C31F0068ED8F /* StarStatusHelper.swift */; };
+		4A7A0A1F2947CDCD0068ED8F /* StarIO_Extension.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7A0A1D2947CDCC0068ED8F /* StarIO_Extension.xcframework */; };
+		4A7A0A202947CDCD0068ED8F /* StarIO.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7A0A1E2947CDCC0068ED8F /* StarIO.xcframework */; };
+		4A7A0A222947CDDD0068ED8F /* StarIO_Extension.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7A0A212947CDDD0068ED8F /* StarIO_Extension.xcframework */; };
+		4A7A0A242947CDF70068ED8F /* StarIO.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7A0A232947CDF70068ED8F /* StarIO.xcframework */; };
+		4AC4D106294A26F300C1778F /* NativeExtManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC4D105294A26F300C1778F /* NativeExtManager.swift */; };
 		B51E616E275545BA00B2C215 /* StarSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51E616D275545BA00B2C215 /* StarSampleApp.swift */; };
 		B558C5AE274E995800BF1528 /* PrinterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B558C5AD274E995800BF1528 /* PrinterListView.swift */; };
 		B558C5B0274E995900BF1528 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B558C5AF274E995900BF1528 /* Assets.xcassets */; };
@@ -34,7 +41,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4A2BB7812947DD620086165B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		4A2BB7832947DD690086165B /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		4A7A0A142947C31F0068ED8F /* StarStatusHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarStatusHelper.swift; sourceTree = "<group>"; };
+		4A7A0A1D2947CDCC0068ED8F /* StarIO_Extension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = StarIO_Extension.xcframework; sourceTree = "<group>"; };
+		4A7A0A1E2947CDCC0068ED8F /* StarIO.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = StarIO.xcframework; sourceTree = "<group>"; };
+		4A7A0A212947CDDD0068ED8F /* StarIO_Extension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = StarIO_Extension.xcframework; path = Libs/StarIO_Extension.xcframework; sourceTree = "<group>"; };
+		4A7A0A232947CDF70068ED8F /* StarIO.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = StarIO.xcframework; path = Libs/StarIO.xcframework; sourceTree = "<group>"; };
+		4A7A0A252947D6040068ED8F /* SM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SM-Bridging-Header.h"; sourceTree = "<group>"; };
+		4AC4D105294A26F300C1778F /* NativeExtManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeExtManager.swift; sourceTree = "<group>"; };
 		B51E616D275545BA00B2C215 /* StarSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarSampleApp.swift; sourceTree = "<group>"; };
 		B558C5A8274E995800BF1528 /* StarSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B558C5AD274E995800BF1528 /* PrinterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterListView.swift; sourceTree = "<group>"; };
@@ -53,16 +68,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A2BB7842947DD690086165B /* ExternalAccessory.framework in Frameworks */,
+				4A2BB7822947DD620086165B /* CoreBluetooth.framework in Frameworks */,
+				4A7A0A202947CDCD0068ED8F /* StarIO.xcframework in Frameworks */,
+				4A7A0A222947CDDD0068ED8F /* StarIO_Extension.xcframework in Frameworks */,
 				B55C7D71274ED0A100BDC634 /* StarSdk.framework in Frameworks */,
+				4A7A0A1F2947CDCD0068ED8F /* StarIO_Extension.xcframework in Frameworks */,
+				4A7A0A242947CDF70068ED8F /* StarIO.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A7A0A1C2947CD6F0068ED8F /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				4A7A0A1D2947CDCC0068ED8F /* StarIO_Extension.xcframework */,
+				4A7A0A1E2947CDCC0068ED8F /* StarIO.xcframework */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
 		B558C59F274E995700BF1528 = {
 			isa = PBXGroup;
 			children = (
+				4A7A0A1C2947CD6F0068ED8F /* Libs */,
 				B558C5BF274E9FFB00BF1528 /* StarSdk.framework */,
 				B558C5AA274E995800BF1528 /* StarSampleApp */,
 				B558C5A9274E995800BF1528 /* Products */,
@@ -88,6 +119,8 @@
 				B558C5B1274E995900BF1528 /* Preview Content */,
 				B51E616D275545BA00B2C215 /* StarSampleApp.swift */,
 				4A7A0A142947C31F0068ED8F /* StarStatusHelper.swift */,
+				4A7A0A252947D6040068ED8F /* SM-Bridging-Header.h */,
+				4AC4D105294A26F300C1778F /* NativeExtManager.swift */,
 			);
 			path = StarSampleApp;
 			sourceTree = "<group>";
@@ -103,6 +136,10 @@
 		B558C5BA274E9DE500BF1528 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A2BB7832947DD690086165B /* ExternalAccessory.framework */,
+				4A2BB7812947DD620086165B /* CoreBluetooth.framework */,
+				4A7A0A232947CDF70068ED8F /* StarIO.xcframework */,
+				4A7A0A212947CDDD0068ED8F /* StarIO_Extension.xcframework */,
 				B558C5BB274E9DE500BF1528 /* StarSdk.framework */,
 			);
 			name = Frameworks;
@@ -220,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EF145427505961006A35AE /* PrinterDetailsView.swift in Sources */,
+				4AC4D106294A26F300C1778F /* NativeExtManager.swift in Sources */,
 				4A7A0A152947C31F0068ED8F /* StarStatusHelper.swift in Sources */,
 				B51E616E275545BA00B2C215 /* StarSampleApp.swift in Sources */,
 				B55C7D75274FD8AF00BDC634 /* PrinterListViewModel.swift in Sources */,
@@ -388,6 +426,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Shopify.StarSampleAppfff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/SM-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -424,6 +463,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Shopify.StarSampleAppfff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/SM-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
