@@ -17,6 +17,10 @@ class NativeExtManager: StarIoExtManagerWrapper {
     init() {
         
     }
+    
+    func getPort() -> SMPort {
+        return starIoExtManager!.port
+    }
 
     func setStatusListener(listener: @escaping (String) -> Void) {
         Swift.print("[NativeExtManager] called setStatusListener")

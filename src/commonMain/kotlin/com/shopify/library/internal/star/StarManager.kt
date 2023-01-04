@@ -66,7 +66,8 @@ class StarManager(
 
     fun print(releasePort: Boolean) {
         backgroundScope.launch {
-            starIoExtManagerWrapper.print(releasePort = releasePort).also {
+            val port = starIoExtManagerWrapper.getPort()
+            starSdk.print(port, releasePort).also {
                 _printResult.emit(it)
             }
         }

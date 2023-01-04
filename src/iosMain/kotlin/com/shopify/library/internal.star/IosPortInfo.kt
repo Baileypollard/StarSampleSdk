@@ -1,9 +1,6 @@
 package com.shopify.library.internal.star
 
-import StarIO.SMPort
 import StarIO.PortInfo as StarPortInfo
-
-actual typealias Port = SMPort
 
 class IosPortInfo(starPortInfo: StarPortInfo) : KmmPortInfo {
     override val portName: String = starPortInfo.portName() ?: ""

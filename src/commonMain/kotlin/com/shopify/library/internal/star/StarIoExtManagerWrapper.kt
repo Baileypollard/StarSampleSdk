@@ -13,4 +13,5 @@ interface StarIoExtManagerWrapper {
     fun connect(portName: String)
     fun disconnect()
     fun setStatusListener(listener: (String) -> Unit)
+    fun getPort(): StarPort
 }

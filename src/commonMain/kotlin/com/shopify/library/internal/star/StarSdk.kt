@@ -7,7 +7,7 @@ package com.shopify.library.internal.star
  */
 interface StarSdk {
     suspend fun searchPrinters(target: StarQuery): List<KmmPortInfo>
-    suspend fun print(port: Port, releasePort: Boolean): Boolean
+    suspend fun print(port: StarPort, releasePort: Boolean): Boolean
     suspend fun getWifiPrinterStatus(portInfo: KmmPortInfo, timesToReleasePort: Int): String
     fun releasePort()
 

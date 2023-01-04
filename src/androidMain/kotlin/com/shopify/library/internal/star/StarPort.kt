@@ -1,3 +1,3 @@
 package com.shopify.library.internal.star
 
-actual typealias Port = String
+actual typealias StarPort = String

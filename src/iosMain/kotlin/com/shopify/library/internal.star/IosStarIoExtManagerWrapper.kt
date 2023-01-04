@@ -27,6 +27,11 @@ class IosStarIoExtManagerWrapper(private val starSdk: StarSdk) : StarIoExtManage
 //    private val _printerStatus = MutableStateFlow("Uninitialized")
 //    override val printerStatus = _printerStatus.asStateFlow()
 
+    override fun getPort(): StarPort {
+        // This should never be used, just added to conform to interface
+        return starIoExtManager.value?.port as SMPort
+    }
+
     override fun setStatusListener(listener: (String) -> Unit) {
         this.listener.value = listener
         NSLog("[StarIoExt] setting listener, status Uninitialized")
