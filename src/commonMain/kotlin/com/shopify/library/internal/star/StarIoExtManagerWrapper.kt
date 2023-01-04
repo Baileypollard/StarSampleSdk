@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.StateFlow
  * interface - but for the purposes of this sample project we only implement iOS.
  */
 interface StarIoExtManagerWrapper {
-    val printerStatus: StateFlow<String>
-
     suspend fun print(releasePort: Boolean): Boolean
     fun connect(portName: String)
     fun disconnect()
+    fun setStatusListener(listener: (String) -> Unit)
+    fun getPort(): StarPort
 }

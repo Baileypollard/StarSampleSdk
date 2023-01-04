@@ -8,11 +8,12 @@ package com.shopify.library.internal.star
  */
 class IosStarManager {
     companion object Factory {
-        fun create(): StarManager {
+        fun create(statusHelper: StatusHelper, wrapper: StarIoExtManagerWrapper): StarManager {
             val starSdk = IosStarSdk()
             return StarManager(
+                statusHelper = statusHelper,
                 starSdk = starSdk,
-                starIoExtManagerWrapper = IosStarIoExtManagerWrapper(starSdk),
+                starIoExtManagerWrapper = wrapper,
             )
         }
     }

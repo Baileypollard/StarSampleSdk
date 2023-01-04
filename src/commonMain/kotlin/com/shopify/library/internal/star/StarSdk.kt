@@ -6,9 +6,9 @@ package com.shopify.library.internal.star
  * interface - but for the purposes of this sample project we only implement iOS.
  */
 interface StarSdk {
-    suspend fun searchPrinters(target: StarQuery): List<PortInfo>
-    suspend fun print(port: Port, releasePort: Boolean): Boolean
-    suspend fun getWifiPrinterStatus(portInfo: PortInfo, timesToReleasePort: Int): String
+    suspend fun searchPrinters(target: StarQuery): List<KmmPortInfo>
+    suspend fun print(port: StarPort, releasePort: Boolean): Boolean
+    suspend fun getWifiPrinterStatus(portInfo: KmmPortInfo, timesToReleasePort: Int): String
     fun releasePort()
 
     enum class StarQuery(val query: String) {

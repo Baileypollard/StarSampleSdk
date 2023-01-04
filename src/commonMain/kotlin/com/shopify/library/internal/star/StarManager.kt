@@ -11,12 +11,13 @@ import kotlinx.coroutines.flow.collect
  * to easily write async code on both platforms.
  */
 class StarManager(
+    private val statusHelper: StatusHelper,
     private val starSdk: StarSdk,
     private val starIoExtManagerWrapper: StarIoExtManagerWrapper,
     private val backgroundScope: CoroutineScope = CoroutineScope(Dispatchers.Default),
 ) {
 
-    private val _printers = MutableSharedFlow<List<PortInfo>>()
+    private val _printers = MutableSharedFlow<List<KmmPortInfo>>()
     val printer = _printers.asSharedFlow()
 
     private val _printResult = MutableSharedFlow<Boolean>()
@@ -26,10 +27,8 @@ class StarManager(
     val printerStatus = _printerStatus.asSharedFlow()
 
     init {
-        backgroundScope.launch {
-            starIoExtManagerWrapper.printerStatus.collect { status ->
-                _printerStatus.emit(status)
-            }
+        starIoExtManagerWrapper.setStatusListener { status ->
+            backgroundScope.launch { _printerStatus.emit(status) }
         }
     }
 
@@ -67,16 +66,18 @@ class StarManager(
 
     fun print(releasePort: Boolean) {
         backgroundScope.launch {
-            starIoExtManagerWrapper.print(releasePort = releasePort).also {
+            val port = starIoExtManagerWrapper.getPort()
+            starSdk.print(port, releasePort).also {
                 _printResult.emit(it)
             }
         }
     }
 
-    fun getWifiPrinterStatus(portInfo: PortInfo, timesToReleasePort: Int) {
+    fun getWifiPrinterStatus(portInfo: KmmPortInfo, timesToReleasePort: Int) {
         backgroundScope.launch {
             _printerStatus.emit("Retrieving...")
-            val status = starSdk.getWifiPrinterStatus(portInfo, timesToReleasePort)
+//            val status = starSdk.getWifiPrinterStatus(portInfo, timesToReleasePort)
+            val status = statusHelper.getStatus(portInfo.portName)
             _printerStatus.emit(status)
         }
     }

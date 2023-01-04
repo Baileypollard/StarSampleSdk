@@ -31,7 +31,7 @@ internal class IosStarSdk : StarSdk {
 
     private val port = atomic<SMPort?>(null)
 
-    override suspend fun searchPrinters(target: StarSdk.StarQuery): List<PortInfo> {
+    override suspend fun searchPrinters(target: StarSdk.StarQuery): List<KmmPortInfo> {
         memScoped {
             val searchPrintersError = alloc<ObjCObjectVar<NSError?>>()
             val portInfos = SMPort.searchPrinter(target.query, searchPrintersError.ptr)
@@ -98,7 +98,7 @@ internal class IosStarSdk : StarSdk {
         }
     }
 
-    override suspend fun getWifiPrinterStatus(portInfo: PortInfo, timesToReleasePort: Int): String {
+    override suspend fun getWifiPrinterStatus(portInfo: KmmPortInfo, timesToReleasePort: Int): String {
         memScoped {
             val portConnectionError = alloc<ObjCObjectVar<NSError?>>()
 

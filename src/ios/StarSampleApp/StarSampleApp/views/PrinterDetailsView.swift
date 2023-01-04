@@ -15,7 +15,7 @@ struct PrinterDetailsView: View {
     @ObservedObject
     var viewModel: PrinterDetailsViewModel
     
-    var portInfo: PortInfo
+    var portInfo: KmmPortInfo
     
     var body: some View {
         ScrollView {
@@ -80,11 +80,16 @@ struct PrinterDetailsView: View {
 
 struct PrinterDetails_Previews: PreviewProvider {
     static var previews: some View {
-        PrinterDetailsView(viewModel: PrinterDetailsViewModel(starManager: IosStarManager.companion.create()), portInfo: TestPortInfo())
+        PrinterDetailsView(
+            viewModel: PrinterDetailsViewModel(
+                starManager: IosStarManager.companion.create(statusHelper: StarStatusHelper(), wrapper: nativeExtManager)
+            ),
+            portInfo: TestPortInfo()
+        )
     }
 }
 
-private class TestPortInfo : PortInfo {
+private class TestPortInfo : KmmPortInfo {
     var macAddress: String = "01:00:00:01:01"
     var modelName: String = "TSP100-ASDS"
     var portName: String = "BT:TSP100"
