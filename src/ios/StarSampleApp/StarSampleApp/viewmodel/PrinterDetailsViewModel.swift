@@ -7,10 +7,12 @@
 
 import Foundation
 import StarSdk
+import UIKit
 
 class PrinterDetailsViewModel: ObservableObject {
     
     private var starManager: StarManager? = nil
+	private var portInfo: PortInfo? = nil
     
     @Published
     var printerStatus: String = "Uninitialized"
@@ -21,9 +23,10 @@ class PrinterDetailsViewModel: ObservableObject {
     @Published
     var isConnecting: Bool = false
     
-    init(starManager: StarManager) {
+	init(starManager: StarManager, portInfo: PortInfo) {
         self.starManager = starManager
-        
+		self.portInfo = portInfo
+        onViewDidLoad()
         self.starManager?.printerStatus.collect(collector: Collector<String> { status in
             self.isConnecting = false
             self.printerStatus = status
@@ -47,7 +50,7 @@ class PrinterDetailsViewModel: ObservableObject {
         starManager?.disconnect()
     }
     
-    func print(releasePort: Bool) {
+    func printReceipt(releasePort: Bool) {
         isPrinting = true
         starManager?.print(releasePort: releasePort)
     }
@@ -55,4 +58,18 @@ class PrinterDetailsViewModel: ObservableObject {
     func getWifiPrinterStatus(portInfo: PortInfo, timesToReleasePort: Int32) {
         starManager?.getWifiPrinterStatus(portInfo: portInfo, timesToReleasePort: timesToReleasePort)
     }
+	
+	func onViewDidLoad() {
+		let notificationCenter = NotificationCenter.default
+		notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+	}
+	
+	@objc func appMovedToBackground() {
+		disconnect()
+	}
+	
+	@objc func appMovedToForeground() {
+		connect(portName: portInfo?.portName ?? "")
+	}
 }

@@ -29,11 +29,11 @@ struct PrinterDetailsView: View {
                 }
                 HStack(spacing: 20.0) {
                     Button("Print and release port (Wi-Fi Printers)", action: {
-                        viewModel.print(releasePort: true)
+                        viewModel.printReceipt(releasePort: true)
                     }).disabled(viewModel.isPrinting || viewModel.printerStatus == "Uninitialized")
                     
                     Button("Print do not release port (Bluetooth Printers)", action: {
-                        viewModel.print(releasePort: false)
+                        viewModel.printReceipt(releasePort: false)
                     }).disabled(viewModel.isPrinting || viewModel.printerStatus == "Uninitialized")
                 }.padding(.top, 40.0)
                 HStack(spacing: 20.0) {
@@ -76,7 +76,7 @@ struct PrinterDetailsView: View {
 
 struct PrinterDetails_Previews: PreviewProvider {
     static var previews: some View {
-        PrinterDetailsView(viewModel: PrinterDetailsViewModel(starManager: IosStarManager.companion.create()), portInfo: TestPortInfo())
+        PrinterDetailsView(viewModel: PrinterDetailsViewModel(starManager: IosStarManager.companion.create(), portInfo: TestPortInfo()), portInfo: TestPortInfo())
     }
 }
 
