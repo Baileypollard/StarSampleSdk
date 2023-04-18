@@ -2,28 +2,31 @@
 
 ## iOS Bugs
 
-#### Star Bluetooth printer with an active StarIoExtManager connection won't reconnect after calling disconnect()/connect()
+#### Star Bluetooth printer with an active StarIoExtManager connection won't reconnect after calling `disconnect()` when app is backgrounded and `connect()` when app is foregrounded.
 
-  **Background:**
-  This regression was introduced after addressing another bug which involved swapping between our Point of Sale app and opening another 3rd party app that also makes a connection to the BT printer. Previously we were not calling disconnec() when backgrounding and not calling connect() when foregrounding our app, and would lose connection to the Printer. After adding calls to disconnect/connect when background/foregrounding it addressed our initial connection issue, but introduced a new regression when powering off the BT printer during backgrounding and not being able to connect after powering it back on after foregrounding.
+  **Bug description:**
+This sample app will use a `StarIoExtManager` to connect with a Bluetooth printer.  Once connected, the app will automatically call `starIoExtManager.disconnect()` if the app is subsequently backgrounded, and then `starIoExtManager.connect()` if the app is brought into the foreground again.  However if the printer is switched off while the app is backgrounded, and then switched on _after_ the app has been foregrounded again, the `StarIoExtManager` will fail to reconnect to the printer and report the following error:
 
+<insert error message from Star Micronics SDK>
+
+The only way to get the printer to connect to the sample app again is to force close and restart the app.
   **Steps to reproduce:**
   1. Manually pair a Star Micronics Bluetooth printer to the iOS device
   2. On the sample app, click the "Scan BT" button to discover the paired BT printer
   3. Click on the discovered BT printer row to navigate to printer details
   4. In the top right, click "Connect" - wait for the connection to succeed 
   5. When the connection status is "didPrinterOnline", put the sample app into
-     the background
+     the background by pressing the home button on the iOS device
   6. Turn off the connected BT Printer
   7. Bring the sample back into the foreground, printer status now displays "Initial connection failed"
   8. Turn back on BT printer, printer status still displays "Initial connection failed"
-  9. Printer is no longer able to connect to sample app without restarting
+  9. The only way to get the printer to connect to the sample app again is to force close and restart the app
 
   **Expected outcome:**
-  When backgrounding the app and turning off the printer, merchant should be able to connect again to the printer when they bring the app back into the foreground and power back on the printer.
+When backgrounding the sample app, turning off the printer, and then opening the app again, the app should be able to reconnect to the printer once it is switched on again.
   
   **Actual outcome:**
-  Printer never reconnects to the app after powering on without have to restart the app.
+The printer never reconnects to the sample app after powering on. An app restart is needed to get it to connect again.
 
 --------------------------------------  
   
