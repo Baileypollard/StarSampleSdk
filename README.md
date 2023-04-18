@@ -1,83 +1,33 @@
 # StarSampleSdk
 
-## iOS Bugs that need to be fixed
+## iOS Bugs
 
-#### Retrieving network printer status fails after subsequent attempts
-  **Steps to reproduce:**
+#### Star Bluetooth printer with an active StarIoExtManager connection won't reconnect after calling `disconnect()` when app is backgrounded and `connect()` when app is foregrounded.
 
-  1. Turn on a Wi-Fi printer.
-  2. Launch the app and press Scan Network for the app to discover the Wi-Fi printer. Select the printer from the list.
-  3. On the printer details page, press Get status, release port TWICE. Verify the printer status changes to Online.
-  4. Press Get status, release port TWICE a few more times, verifying the status is always Online.
-  5. Press Get status, release port ONCE, verify the status is Online.
-  6. Press Get status, release port ONCE again, and verify the status changes to Offline after a few seconds, with the following error message logged. Any subsequent attempt to get the printer status will result in this failure.
+  **Bug description:**
+This sample app will use a `StarIoExtManager` to connect with a Bluetooth printer.  Once connected, the app will automatically call `starIoExtManager.disconnect()` if the app is subsequently backgrounded, and then `starIoExtManager.connect()` if the app is brought into the foreground again.  However if the printer is switched off while the app is backgrounded, and then switched on _after_ the app has been foregrounded again, the `StarIoExtManager` will fail to reconnect to the printer and report the following error: "Failed to initialize printer"
 
-  **Video:** https://user-images.githubusercontent.com/45129610/144146683-6999d953-2829-442d-a944-4c87c1a6213e.mp4
+The only way to get the printer to connect to the sample app again is to force close and restart the app.
   
-  **Expected outcome:**
-  We should be able to fetch the network printers status as many times as we would like, and not have to worry about the attempt to fetch the status failing. This works as expected on Android - but fails on iOS
-  
-  **Actual outcome:**
-  The first attempt to fetch the printers status will succeed, but any subsequent attempt to grab the printers status will fail with the following error: Failed to getPort. Printer is in use.
-  
---------------------------------------  
-#### Star Bluetooth printer with an active StarIoExtManager connection won't reconnect if we don't call releasePort() after a print job. As a result, calling releasePort() results in the EXC_BAD_ACCESS crashes that we have been seeing in production
-
   **Steps to reproduce:**
   1. Manually pair a Star Micronics Bluetooth printer to the iOS device
   2. On the sample app, click the "Scan BT" button to discover the paired BT printer
   3. Click on the discovered BT printer row to navigate to printer details
   4. In the top right, click "Connect" - wait for the connection to succeed 
-  5. When the connection status is "didPrinterOnline, click "Print and do not release port" your printer should then print
-  6. Now, turn the printer off - the status should update to "didPrinterImpossible"
-  7. Turn the printer back on, see that the printer status is now "didAccessoryConnectFailure"
-  8. At this point I would expect it to be "didPrinterOnline"
-
-  **Video:** https://user-images.githubusercontent.com/45129610/144144933-d20680af-ded4-4849-a791-10733853161f.mp4
+  5. When the connection status is "didPrinterOnline", put the sample app into
+     the background by pressing the home button on the iOS device
+  6. Turn off the connected BT Printer
+  7. Bring the sample back into the foreground, printer status now displays "Initial connection failed"
+  8. Turn back on BT printer, printer status still displays "Initial connection failed"
+  9. The only way to get the printer to connect to the sample app again is to force close and restart the app
 
   **Expected outcome:**
-  The printer should reconnect to the app after a print has completed without releasing the port. We shouldn't need to release the port after a print job, because we are using the StarIoExtManager to secure a connection with the app. 
+When backgrounding the sample app, turning off the printer, and then opening the app again, the app should be able to reconnect to the printer once it is switched on again.
   
   **Actual outcome:**
-  The printer fails the reconnect to the app after a single print job has completed. This means that the user will have to restart their app everytime the printer has been turn off/on.
+The printer never reconnects to the sample app after powering on. An app restart is needed to get it to connect again.
 
 --------------------------------------  
-
-#### Star Bluetooth printer with an active StarIoExtManager connection won't reconnect after calling disconnect()/connect()
-
-  **Steps to reproduce:**
-  1. Manually pair a Star Micronics Bluetooth printer to the iOS device
-  2. On the sample app, click the "Scan BT" button to discover the paired BT printer
-  3. Click on the discovered BT printer row to navigate to printer details
-  4. In the top right, click "Connect" - wait for the connection to succeed 
-  5. When the connection status is "didPrinterOnline, click "Print and do not release port" your printer should then print
-  5. In the top right, click "Disconnect" this should disconnect the StarIoExtManager instance
-  6. Click "Connect" again - observe that the Printer status is now "Initial connection failed"
-
-  **Video:** https://user-images.githubusercontent.com/45129610/144147706-3ad17a28-a3d9-4711-b403-a781abb5fe9d.mp4
-
-  **Expected outcome:**
-  We should be able to disconnect/reconnect the printer regardless of if the user has previously printed or not. 
-  
-  **Actual outcome:**
-  If the user has printed without releasing the port - then we can not disconnect and reconnect the StarIoExtManager
-
---------------------------------------  
-
-#### Star mPOP printer has an empty macAddress in PortInfo object
-  **Steps to reproduce:**
-  1. Manually pair an mPOP printer
-  2. On the sample app, click the "Scan BT" button to discover the paired BT printer
-  3. Click on the discovered BT printer row to navigate to printer details
-  4. In the printer details, see that the macAddress field is an empty string
-  
-  **Video:** https://user-images.githubusercontent.com/45129610/144145102-fc8ab567-b5ee-41f8-8fc2-247d58d2422a.mp4
-
-  **Expected outcome:**
-  Every BT device has a macAddress, so the PortInfo object should be populated correctly when the mPOP printer is discovered. This is how we uniquely identify printers. 
-  
-  **Actual outcome:**
-  The macAddress field on the PortInfo object is empty when an mPOP printer is discovered
   
 ## Background Context
 
