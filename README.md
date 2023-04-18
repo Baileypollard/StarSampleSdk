@@ -5,11 +5,10 @@
 #### Star Bluetooth printer with an active StarIoExtManager connection won't reconnect after calling `disconnect()` when app is backgrounded and `connect()` when app is foregrounded.
 
   **Bug description:**
-This sample app will use a `StarIoExtManager` to connect with a Bluetooth printer.  Once connected, the app will automatically call `starIoExtManager.disconnect()` if the app is subsequently backgrounded, and then `starIoExtManager.connect()` if the app is brought into the foreground again.  However if the printer is switched off while the app is backgrounded, and then switched on _after_ the app has been foregrounded again, the `StarIoExtManager` will fail to reconnect to the printer and report the following error:
-
-<insert error message from Star Micronics SDK>
+This sample app will use a `StarIoExtManager` to connect with a Bluetooth printer.  Once connected, the app will automatically call `starIoExtManager.disconnect()` if the app is subsequently backgrounded, and then `starIoExtManager.connect()` if the app is brought into the foreground again.  However if the printer is switched off while the app is backgrounded, and then switched on _after_ the app has been foregrounded again, the `StarIoExtManager` will fail to reconnect to the printer and report the following error: "Failed to initialize printer"
 
 The only way to get the printer to connect to the sample app again is to force close and restart the app.
+  
   **Steps to reproduce:**
   1. Manually pair a Star Micronics Bluetooth printer to the iOS device
   2. On the sample app, click the "Scan BT" button to discover the paired BT printer
